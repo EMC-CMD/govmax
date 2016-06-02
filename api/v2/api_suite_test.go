@@ -25,6 +25,6 @@ var _ = BeforeSuite(func() {
 	username = os.Getenv("VMAX_USERNAME")
 	password = os.Getenv("VMAX_PASSWORD")
 	insecure = true
-	symmetrixID = os.Getenv("VMAX_SYMMETRIC_ID")
+	symmetrixID = os.Getenv("VMAX_ID")
 	client = api.NewClient(host, username, password, port, insecure)
 })

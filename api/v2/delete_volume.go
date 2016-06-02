@@ -15,16 +15,3 @@ func (c Client) DeleteVolume(symmetricID, volumeID string) error {
 
 	return nil
 }
-
-func (c Client) RemoveVolumeFromStorageGroup(symmetricID, storageGroupID, volumeID string) error {
-	removeVolumeParam := model.EditStorageGroupParam{
-		EditStorageGroupActionParam: model.EditStorageGroupActionParam{
-			RemoveVolumeParam: &model.RemoveVolumeParam{
-				VolumeID: []string{
-					volumeID,
-				},
-			},
-		},
-	}
-	return c.EditStorageGroup(symmetricID, storageGroupID, removeVolumeParam)
-}

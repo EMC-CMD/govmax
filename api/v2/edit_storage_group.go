@@ -17,3 +17,29 @@ func (c Client) EditStorageGroup(symmetricID, storageGroupID string, p model.Edi
 
 	return nil
 }
+
+func (c Client) AddVolumeToStorageGroup(symmetricID, storageGroupID, volumeID string) error {
+	addVolumeParam := model.EditStorageGroupParam{
+		EditStorageGroupActionParam: model.EditStorageGroupActionParam{
+			AddVolumeParam: &model.AddVolumeParam{
+				VolumeID: []string{
+					volumeID,
+				},
+			},
+		},
+	}
+	return c.EditStorageGroup(symmetricID, storageGroupID, addVolumeParam)
+}
+
+func (c Client) RemoveVolumeFromStorageGroup(symmetricID, storageGroupID, volumeID string) error {
+	removeVolumeParam := model.EditStorageGroupParam{
+		EditStorageGroupActionParam: model.EditStorageGroupActionParam{
+			RemoveVolumeParam: &model.RemoveVolumeParam{
+				VolumeID: []string{
+					volumeID,
+				},
+			},
+		},
+	}
+	return c.EditStorageGroup(symmetricID, storageGroupID, removeVolumeParam)
+}

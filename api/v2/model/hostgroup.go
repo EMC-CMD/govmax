@@ -47,3 +47,31 @@ type CreateHostGroupParam struct {
 		ConsistentLun bool `json:"consistent_lun"`
 	} `json:"hostFlags"`
 }
+
+type ListOfHostGroupsResponse struct {
+	NumOfHostGroups int `json:"num_of_host_groups"`
+	HostGroupID []string `json:"hostGroupId"`
+	Success bool `json:"success"`
+	Message string `json:"message"`
+}
+
+type HostGroupResponse struct {
+	HostGroup []struct {
+		HostGroupID string `json:"hostGroupId"`
+		NumOfMaskingViews int `json:"num_of_masking_views"`
+		NumOfHosts int `json:"num_of_hosts"`
+		NumOfInitiators int `json:"num_of_initiators"`
+		PortFlagsOverride bool `json:"port_flags_override"`
+		ConsistentLun bool `json:"consistent_lun"`
+		EnabledFlags string `json:"enabled_flags"`
+		DisabledFlags string `json:"disabled_flags"`
+		Type string `json:"type"`
+		Host []struct {
+			HostID string `json:"hostId"`
+			Initiator []string `json:"initiator"`
+		} `json:"host"`
+		Maskingview []string `json:"maskingview"`
+	} `json:"hostGroup"`
+	Success bool `json:"success"`
+	Message string `json:"message"`
+}

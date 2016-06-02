@@ -13,11 +13,15 @@ import (
 	"github.com/emccode/govmax/api/v2/model"
 )
 
-func (c Client) ListVolumes(symmetrixID, storageGroupID string) (model.ListVolumeResponse, error) {
-	uri := fmt.Sprintf("/restapi/sloprovisioning/symmetrix/%s/volume", symmetrixID)
+func (c Client) ListVolumes(symmetrixID, storageGroupID string, attachedOnly bool) (model.ListVolumeResponse, error) {
+	uri := fmt.Sprintf("/restapi/sloprovisioning/symmetrix/%s/volume?", symmetrixID)
 
 	if storageGroupID != "" {
-		uri = fmt.Sprintf("%s?storageGroupId=%s", uri, storageGroupID)
+		uri = fmt.Sprintf("%sstorageGroupId=%s&", uri, storageGroupID)
+	}
+
+  if attachedOnly {
+		uri = fmt.Sprintf("%snum_of_masking_views>0&", uri)
 	}
 
 	listVolumeResponse := model.ListVolumeResponse{}

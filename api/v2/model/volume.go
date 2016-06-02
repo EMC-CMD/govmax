@@ -22,6 +22,7 @@ type VolumeResponse struct {
 		Encapsulated       bool    `json:"encapsulated"`
 		NumOfStorageGroups int     `json:"num_of_storage_groups"`
 		NumOfFrontEndPaths int     `json:"num_of_front_end_paths"`
+		StorageGroupIDs		 []string `json:"storageGroupId, omitempty"`
 		SymmetrixPortKey   []struct {
 			DirectorID string `json:"directorId"`
 			PortID     string `json:"portId"`

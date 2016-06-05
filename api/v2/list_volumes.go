@@ -20,8 +20,8 @@ func (c Client) ListVolumes(symmetrixID, storageGroupID string, attachedOnly boo
 		uri = fmt.Sprintf("%sstorageGroupId=%s&", uri, storageGroupID)
 	}
 
-  if attachedOnly {
-		uri = fmt.Sprintf("%snum_of_masking_views>0&", uri)
+	if attachedOnly {
+		uri = fmt.Sprintf("%snum_of_masking_views=>0&", uri)
 	}
 
 	listVolumeResponse := model.ListVolumeResponse{}

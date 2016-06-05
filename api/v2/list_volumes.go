@@ -13,7 +13,7 @@ import (
 	"github.com/emccode/govmax/api/v2/model"
 )
 
-func (c Client) ListVolumes(symmetrixID, storageGroupID string, attachedOnly bool) (model.ListVolumeResponse, error) {
+func (c Client) ListVolumes(symmetrixID, storageGroupID string, attachedOnly bool, detachedOnly bool) (model.ListVolumeResponse, error) {
 	uri := fmt.Sprintf("/restapi/sloprovisioning/symmetrix/%s/volume?", symmetrixID)
 
 	if storageGroupID != "" {
@@ -22,6 +22,10 @@ func (c Client) ListVolumes(symmetrixID, storageGroupID string, attachedOnly boo
 
 	if attachedOnly {
 		uri = fmt.Sprintf("%snum_of_masking_views=>0&", uri)
+	}
+
+	if detachedOnly {
+		uri = fmt.Sprintf("%snum_of_masking_views=0&", uri)
 	}
 
 	listVolumeResponse := model.ListVolumeResponse{}

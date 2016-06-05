@@ -33,7 +33,7 @@ func (c Client) CreateVolume(symmetricID, size, emulation string, numOfVols int)
 	if err != nil {
 		return []string{}, fmt.Errorf("error adding volume into storage group %s", err)
 	}
-	createdVolumes, err := c.ListVolumes(symmetricID, tmpStorageGroup, false)
+	createdVolumes, err := c.ListVolumes(symmetricID, tmpStorageGroup, false, false)
 	if err != nil {
 		return []string{}, fmt.Errorf("error listing volumes in temp storage group %s", tmpStorageGroup)
 	}
